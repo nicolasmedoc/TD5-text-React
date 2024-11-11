@@ -37,6 +37,7 @@ class ScatterplotD3 {
 
         this.xScale = d3.scaleLinear().range([0,this.width]);
         this.yScale = d3.scaleLinear().range([this.height,0]);
+        this.colorScale = d3.scaleOrdinal(d3.schemeObservable10)
 
         // build xAxisG
         this.matSvg.append("g")
@@ -71,8 +72,12 @@ class ScatterplotD3 {
                 const yPos = this.yScale(item[yAttribute]);
                 return "translate("+xPos+","+yPos+")";
             })
-            .select(".dotCircle")
-
+        ;
+        selection.select(".dotCircle")
+            .attr("fill",(item)=>{
+                return this.colorScale(item.category);
+            })
+        ;
         this.changeBorderAndOpacity(selection)
     }
 
@@ -100,6 +105,10 @@ class ScatterplotD3 {
         const maxY = d3.max(visData.map(item=>item[yAttribute]));
         // this.yScale.domain([0, maxY]);
         this.yScale.domain([minY, maxY]);
+        const categories = Array.from(new Set(visData.map(item=>item.category)))
+        categories.sort()
+        this.colorScale.domain(categories);
+
         this.matSvg.select(".xAxisG")
             .transition().duration(this.transitionDuration)
             .call(d3.axisBottom(this.xScale))
