@@ -3,7 +3,7 @@ import ScatterplotContainer from "./components/scatterplot/ScatterplotContainer"
 import { useEffect} from 'react';
 import {getProjectionData} from "./redux/DataSetSlice";
 import {useDispatch} from "react-redux";
-
+import ControlBar from "./components/ControlBar/ControlBar";
 // here import other dependencies
 
 // a component is a piece of code which render a part of the user interface
@@ -13,11 +13,14 @@ function App() {
     console.log("App useEffect");
   })
   useEffect(()=>{
-    dispatch(getProjectionData());
+    // dispatch(getProjectionData());
   },[]) // empty dependencies [] <=> component did mount
   return (
     <div className="App">
       {console.log("App rendering")}
+      <div id={"control-bar-container"}>
+        <ControlBar/>
+      </div>
       <div id="view-container" className="row">
         <ScatterplotContainer/>
       </div>

@@ -2,7 +2,8 @@ import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
 
 // get the data in asyncThunk
 export const getProjectionData = createAsyncThunk('projectionData/fetchData', async (args,thunkAPI) => {
-  const response = await fetch('http://localhost:5000/getProjection');
+  const params = new URLSearchParams(args).toString();
+  const response = await fetch('http://localhost:5000/getProjection?'+params);
   const responseJson = await response.json();
   return responseJson.projection.map((item,i)=>{
     return {xValue:item[0], yValue:item[1], index:i, category:responseJson.categories[i]};
