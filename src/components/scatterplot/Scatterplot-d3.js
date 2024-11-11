@@ -1,5 +1,4 @@
 import * as d3 from 'd3'
-import { getDefaultFontSize } from '../../utils/helper';
 
 class ScatterplotD3 {
     margin = {top: 100, right: 10, bottom: 50, left: 100};
@@ -8,11 +7,12 @@ class ScatterplotD3 {
     width;
     matSvg;
     // add specific class properties used for the vis render/updates
-    defaultOpacity=0.3;
-    transitionDuration=1000;
+    defaultOpacity=1;
+    transitionDuration=5000;
     circleRadius = 3;
     xScale;
     yScale;
+    colorScale;
 
 
     constructor(el){
@@ -71,6 +71,8 @@ class ScatterplotD3 {
                 const yPos = this.yScale(item[yAttribute]);
                 return "translate("+xPos+","+yPos+")";
             })
+            .select(".dotCircle")
+
         this.changeBorderAndOpacity(selection)
     }
 
@@ -98,7 +100,6 @@ class ScatterplotD3 {
         const maxY = d3.max(visData.map(item=>item[yAttribute]));
         // this.yScale.domain([0, maxY]);
         this.yScale.domain([minY, maxY]);
-
         this.matSvg.select(".xAxisG")
             .transition().duration(this.transitionDuration)
             .call(d3.axisBottom(this.xScale))

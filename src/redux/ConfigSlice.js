@@ -3,17 +3,16 @@ import { createSlice } from '@reduxjs/toolkit'
 export const configSlice = createSlice({
   name: 'config',
   initialState: {
-    nbRows: 4,
-    nbCols: 4,
+    distance: "euclidean",
   },
   reducers: {
-    updateNbRowsAndCols: (state, action) => {
-      return {...state, nbRows:action.payload.nbRows, nbCols:action.payload.nbCols};
+    updateDistance: (state, action) => {
+      return {...state, distance:action.payload.distance};
     },
   }
 })
 
 // Action creators are generated for each case reducer function
-export const { updateNbRowsAndCols} = configSlice.actions
+export const { updateDistance} = configSlice.actions
 
 export default configSlice.reducer

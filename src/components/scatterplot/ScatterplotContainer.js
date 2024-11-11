@@ -3,8 +3,6 @@ import { useEffect, useRef } from 'react';
 import {useSelector, useDispatch} from 'react-redux'
 
 import ScatterplotD3 from './Scatterplot-d3';
-import {updateSelectedItem} from "../../redux/MatrixSlice";
-import {updateHoveredCell} from "../../redux/MatrixSyncSlice";
 
 // TODO: import action methods from reducers
 
