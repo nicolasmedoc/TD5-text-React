@@ -1,6 +1,4 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
-import {getProjectionData} from "../redux/DataSetSlice";
-import {useStableQueryArgs} from "@reduxjs/toolkit/src/query/react/useSerializedStableValue";
 
 
 // Calling API in asyncThunk. for more details see https://redux-toolkit.js.org/api/createAsyncThunk

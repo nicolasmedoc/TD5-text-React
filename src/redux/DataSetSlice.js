@@ -18,11 +18,9 @@ export const dataSetSlice = createSlice({
   },
   extraReducers: builder => {
     builder
-        .addCase(getProjectionData.pending, (state, action)=>{})
         .addCase(getProjectionData.fulfilled, (state, action) => {
           return action.payload
         })
-        .addCase(getProjectionData.rejected, (state, action)=>{})
   }
 })
 

@@ -1,7 +1,9 @@
 import { configureStore } from '@reduxjs/toolkit'
 import dataSetReducer from './redux/DataSetSlice'
+import clusterTreeReducer from "./redux/HierarchySlice";
 export default configureStore({
   reducer: {
-    dataset: dataSetReducer
+    dataset: dataSetReducer,
+    clusterTree: clusterTreeReducer,
     }
 })
